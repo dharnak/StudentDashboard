@@ -1,0 +1,22 @@
+.nivP{
+    display: flex;
+    background-color: rgb(2, 46, 32);
+    color: rgb(255, 255, 255);
+    height: 100px;
+    justify-content: space-around;
+    font-size: 22px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.nivc1{
+    position: relative;
+    top: 35px;
+}
+.nivc2,a{
+    position: relative;
+    top: 18px;
+    display: flex;
+    gap: 60px;
+    text-decoration: none;
+    color: white;
+}
