@@ -1,11 +1,10 @@
 import React from 'react'
-import DataTable from './DataGrid'
 
 const Home = () => {
   return (
     <>
     <div>
-      <DataTable></DataTable>
+       home
     </div>
     </>
   )
