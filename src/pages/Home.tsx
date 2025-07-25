@@ -1,8 +1,13 @@
 import React from 'react'
+import DataTable from './DataGrid'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <>
+    <div>
+      <DataTable></DataTable>
+    </div>
+    </>
   )
 }
 
