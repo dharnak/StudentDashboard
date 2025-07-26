@@ -11,37 +11,52 @@ const StudentEntry = () => {
       Student Entry
       </div>
       <div className='form'>
+        <div className='formsub1'>
         <TextField
           id="Firstname"
-          label="First name"
+          label="First Name"
           type="text"
           variant="filled"
-        /><br/><br/>
+        />
         <TextField
           id="secondname"
-          label="second name"
+          label="Last Name"
           type="text"
           variant="filled"
-        /><br/><br/>
+        />
+        </div><br/><br/>
+        <div className='formsub2'>
          <TextField
           id="class"
-          label="class"
+          label="Class"
           type="text"
           variant="filled"
-        /><br/><br/>
+        />
         <TextField
           id="Busnumber"
-          label="Bus number"
+          label="Bus Number"
           type="number"
           variant="filled"
-        /><br/><br/>
+        />
+        </div>
+        <div className='formsub3'>
         <TextField
           id="Fees"
           label="Fees"
           type="number"
           variant="filled"
-        /><br/><br/>
-        <Button>sum</Button>
+        />
+        </div>
+         <div className='formsub4'>
+        <TextField
+          id="Address"
+          label="Enter a Address"
+          type=""
+          variant="filled"
+          rows={2}
+        />
+        </div>
+        <Button id='sebtu1' variant="contained">SUBMIT</Button>
       </div>
 
     </div>

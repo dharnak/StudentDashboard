@@ -8,14 +8,50 @@
 }
 
 .form{
-    background-color:  rgb(168, 196, 187);
-    height: 700px;
-    width: 400px;
-    text-align: center;
-    margin-left: 550px;
+    background-color: rgb(156, 189, 179);
+    margin-bottom: 300px;
+    height: 540px;
+    width: 1000px;
+    margin-left: 250px;
     margin-top: 30px;
-    padding:auto;
-    padding-top:40px ;
-    border-radius: 22px;
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
+#Firstname ,#secondname,#class,#Fees,#Busnumber,#Address{
+    width: 400px;
+    color: rgb(0, 0, 0);
+    background-color:  rgb(255, 255, 255);
+}
+
+
+.formsub1,.formsub2{
+    display: flex;
+    gap: 50px;
+    position: relative;
+    top: 30px;
+    left: 50px;
+    flex-wrap: wrap;
+}
+.formsub3{
+     display: flex;
+    gap: 50px;
+    position: relative;
+    top: 80px;
+    left: 50px;
+    flex-wrap: wrap;
+}
+.formsub4{
+     display: flex;
+    gap: 50px;
+    position: relative;
+    top: 120px;
+    left: 50px;
+    flex-wrap: wrap;
+}
+#sebtu1{
+    position: relative;
+    top: 200px;
+    left: 440px;
+    background-color:  rgb(2, 46, 32);
+    color: rgb(255, 255, 255);
+}
+
+

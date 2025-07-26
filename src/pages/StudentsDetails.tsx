@@ -1,11 +1,10 @@
 import React from 'react'
-import DataTable from './DataGrid'
+import CustomizedTables from './CustomizedTables'
 
 const StudentsDetails = () => {
   return (
     <div>StudentsDetails
-
-      <DataTable/>
+      <CustomizedTables/>
     </div>
   )
 }
