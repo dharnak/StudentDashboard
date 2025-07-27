@@ -3,7 +3,8 @@ import CustomizedTables from './CustomizedTables'
 
 const StudentsDetails = () => {
   return (
-    <div>StudentsDetails
+    <div>
+      <h1>StudentsDetails</h1>
       <CustomizedTables/>
     </div>
   )
