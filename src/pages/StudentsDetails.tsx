@@ -1,12 +1,8 @@
 import React from 'react'
-import CustomizedTables from './CustomizedTables'
 
-const StudentsDetails = () => {
+function StudentsDetails() {
   return (
-    <div>
-      <h1>StudentsDetails</h1>
-      <CustomizedTables/>
-    </div>
+    <div>StudentsDetails</div>
   )
 }
 
