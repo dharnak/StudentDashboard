@@ -1,5 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Button,
+  Typography,
+  Box
+} from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 interface Student {
   firstname: string;
@@ -10,65 +23,106 @@ interface Student {
   fees: string;
   address: string;
   gender: string;
-  department:string;
+  department: string;
 }
 
 function StudentsDetails() {
   const [students, setStudents] = useState<Student[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    fetchStudents();
+  }, []);
+
+  const fetchStudents = () => {
     axios.get('http://localhost:5000/GETdata')
       .then(res => setStudents(res.data))
       .catch(err => console.error('Error fetching students:', err));
-  }, []);
+  };
+
+  const handleEdit = (id: string) => {
+    navigate(`/edit/${id}`);
+  };
+
+  const handleDelete = (id: string) => {
+    axios.delete(`http://localhost:5000/DELETE/${id}`)
+      .then(() => {
+        alert('Deleted successfully');
+        fetchStudents(); // refresh the list
+      })
+      .catch(err => console.error('Error deleting student:', err));
+  };
 
   return (
-    <div style={{ padding: '20px'}}>
-      <h2>Students List</h2>
-      <table style={{ width: '80%', borderCollapse: 'collapse', marginBottom:'140px' }}>
-        <thead>
-          <tr style={{ backgroundColor: '#022e1f' , color:'white'}}>
-            <th style={thStyle}>First Name</th>
-            <th style={thStyle}>Last Name</th>
-            <th style={thStyle}>ID</th>
-            <th style={thStyle}>Class</th>
-            <th style={thStyle}>Bus Number</th>
-            <th style={thStyle}>Fees</th>
-            <th style={thStyle}>Address</th>
-            <th style={thStyle}>gender</th>
-             <th style={thStyle}>department</th>
-          </tr>
-        </thead>
-        <tbody>
-          {students.map((student, index) => (
-            <tr key={index} style={{ borderBottom: '1px solid #ccc' }}>
-              <td style={tdStyle}>{student.firstname}</td>
-              <td style={tdStyle}>{student.lastname}</td>
-              <td style={tdStyle}>{student.id}</td>
-              <td style={tdStyle}>{student.class}</td>
-              <td style={tdStyle}>{student.busnumber}</td>
-              <td style={tdStyle}>₹{student.fees}</td>
-              <td style={tdStyle}>{student.address}</td>
-              <td style={tdStyle}>{student.gender}</td>
-              <td style={tdStyle}>{student.department}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <Box p={2}>
+      <Typography variant="h4" gutterBottom>
+        Students List
+      </Typography>
+
+      {/* Responsive Scrollable Box */}
+      <Box sx={{ overflowX: 'auto' }}>
+        <TableContainer component={Paper}>
+          <Table size="small" sx={{ minWidth: 800 }}>
+            <TableHead sx={{ backgroundColor: '#022e1f' }}>
+              <TableRow>
+                <TableCell sx={headStyle}>First Name</TableCell>
+                <TableCell sx={headStyle}>Last Name</TableCell>
+                <TableCell sx={headStyle}>ID</TableCell>
+                <TableCell sx={headStyle}>Class</TableCell>
+                <TableCell sx={headStyle}>Bus Number</TableCell>
+                <TableCell sx={headStyle}>Fees</TableCell>
+                <TableCell sx={headStyle}>Address</TableCell>
+                <TableCell sx={headStyle}>Gender</TableCell>
+                <TableCell sx={headStyle}>Department</TableCell>
+                <TableCell sx={headStyle}>Actions</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {students.map((student, index) => (
+                <TableRow key={index} hover>
+                  <TableCell
+                    sx={{ ...cellStyle, color: 'blue', cursor: 'pointer', textDecoration: 'underline' }}
+                    onClick={() => handleEdit(student.id)}
+                  >
+                    {student.firstname}
+                  </TableCell>
+                  <TableCell sx={cellStyle}>{student.lastname}</TableCell>
+                  <TableCell sx={cellStyle}>{student.id}</TableCell>
+                  <TableCell sx={cellStyle}>{student.class}</TableCell>
+                  <TableCell sx={cellStyle}>{student.busnumber}</TableCell>
+                  <TableCell sx={cellStyle}>₹{student.fees}</TableCell>
+                  <TableCell sx={cellStyle}>{student.address}</TableCell>
+                  <TableCell sx={cellStyle}>{student.gender}</TableCell>
+                  <TableCell sx={cellStyle}>{student.department}</TableCell>
+                  <TableCell sx={cellStyle}>
+                    <Button
+                      variant="contained"
+                      color="error"
+                      size="small"
+                      onClick={() => handleDelete(student.id)}
+                    >
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
+    </Box>
   );
 }
 
-const thStyle: React.CSSProperties = {
-  border: '1px solid #ddd',
-  padding: '8px',
-  textAlign: 'left',
+const headStyle = {
+  color: 'white',
   fontWeight: 'bold',
+  fontSize: '14px'
 };
 
-const tdStyle: React.CSSProperties = {
-  border: '1px solid #ddd',
+const cellStyle = {
   padding: '8px',
+  fontSize: '13px'
 };
 
 export default StudentsDetails;
